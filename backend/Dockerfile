@@ -1,5 +1,7 @@
 FROM crowdbotics/cb-django:3.8-slim-buster AS build
 
+RUN sudo apt install -y libproj-dev gdal-bin
+
 # Copy dependency management files and install app packages to /.venv
 COPY ./Pipfile ./Pipfile.lock /
 COPY ./modules/ /modules/
