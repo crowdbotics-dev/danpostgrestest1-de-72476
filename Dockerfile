@@ -1,7 +1,5 @@
 FROM crowdbotics/cb-django:3.8-slim-buster AS build
 
-RUN apt-get update && apt-get install -y libproj-dev gdal-bin
-
 # Copy dependency management files and install app packages to /.venv
 COPY backend/Pipfile backend/Pipfile.lock /
 COPY backend/modules/ /modules/
@@ -15,6 +13,8 @@ RUN yarn install && yarn run web:build
 
 FROM crowdbotics/cb-django:3.8-slim-buster AS release
 ARG SECRET_KEY
+
+RUN apt-get update && apt-get install -y libproj-dev gdal-bin
 
 # Set Working directory
 WORKDIR /opt/webapp
