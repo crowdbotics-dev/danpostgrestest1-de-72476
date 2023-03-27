@@ -136,7 +136,7 @@ DATABASES = {
 
 if env.str("DATABASE_URL", default=None):
     DATABASES = {
-        'default': env.db()
+        'default': env.db_url(engine="django.contrib.gis.db.backends.postgis")
     }
 
 
